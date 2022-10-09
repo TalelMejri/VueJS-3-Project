@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="assets/style.css"/>
+    <!-- Import Vue.js -->
+    <script src="js/vue.global.js"></script>
+   <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>-->
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar">
+      
+      </div>
+    <div>
+      <button class="cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+      <button :disabled="tab_favorite==''"  @click="show_list_favorite=1" class="cart">
+         List Favorite <i :style="tab_favorite!='' ? 'color:red' : ''" class="fa-regular fa-heart"></i>
+      </button>
+    </div>
+    <div  v-if="show_list_favorite"  class="popup-below">
+      <div v-if="show_list_favorite" class="popup">
+         <h1 style="padding-top:30px;">List Favorite :</h1>
+        <div v-for="variant in variants" style="display:block" :key="variant.id">
+          <div v-for="tab in tab_favorite">
+            <div v-if="tab===variant.id">
+              <div class="contenu_favorite"> 
+                <table>
+                  <tr>
+                    <td>Article : {{variant.name}}</td>
+                    <td style="padding-top:30px;"> 
+                      <img :src="variant.image" id="social_favorite" alt="">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>  Prix :{{variant.prix}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <b @click="show_list_favorite=0" id="close">X</b>
+      </div>
+  </div>
+      <div class="product-display">
+        <div :style="{borderColor:color}" class="circle-1"></div>
+        <div :style="{borderColor:color}" class="circle-2"></div>
+        <div :style="{borderColor:color}" class="circle-3"></div>
+        <div class="product-container">
+          <div class="product-image">
+              <img :src="image" :alt="product">
+              <span :style="{color:test_favorite==true ? 'red' : 'gray'}"  class="favorite" @click="updatefavorite(id)" ><i class="fa-solid fa-heart"></i></span>
+          </div>
+          <div class="product-info">
+           <h1>{{name}}<h1>
+         <!--<p v-if="inventery>10">En stock</p>
+          <p v-else-if="inventery>15">presue</p>
+          <p v-else="inventery>20">En repture de stock</p>--> 
+          <p v-if="instock">
+            <img class="image_personel" :src="img_out_of_stock" alt="">
+          </p>
+          <p>{{description}}</p>
+          <div >
+            <h4>Link</h4>
+            <a :href="link"> <img id="social" :src="facebook" alt=""></a>
+            <a :href="link"> <img id="social" :src="github" alt=""></a>
+            <a :href="link"> <img id="social" :src="instagram" alt=""></a>
+          </div>
+       
+          <h4>prix : </h4>
+                   <p style="margin-left:40px;color:#000;font-size: 15px;" >{{ prix}} dt</p> 
+          <h4>Detail</h4>
+          <ul>
+            <li v-for="detail in details">
+                {{detail}}
+            </li>
+          </ul>
+          <h4>Color</h4>
+          <ul style="display: flex;">
+           <!-- <li v-for="(variant,index) in variants" :key="variant.id">
+                <button @mouseover="updatedselect(index)" class="color-circle" :style="{backgroundColor:variant.color}"></button> 
+               </li>
+            -->
+            <button @mouseover="updatedselect(0)" class="btn-hover color-1">VERT</button>
+            <button @mouseover="updatedselect(1)" class="btn-hover color-2">BLEU</button>
+          </ul>
+          <h4>Size</h4>
+          <ul style="display:flex;gap:10px">
+            <li v-for="(size,index) in sizes" :key="size.id" @click="size_choice(size.taille)"> 
+               <span id="size" class="color-circle"
+                       :style="
+                           size_final==size.taille ?
+                              `background-color:#000;padding:10px;color:#fff`:
+                               'padding:10px'
+                          ">
+                      {{size.taille}}
+                </span>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+      <!--:showpreloader="showpreloader"-->
+      <preloader ></preloader>
+    </div>
+    <!-- Import Js -->
+    <script src="js/main.js"></script>
+    <script src="./components/preloader.js"></script>
+    <script src="https://kit.fontawesome.com/c5bebe1cfa.js" crossorigin="anonymous"></script>
+    <script>
+       const mountapp=app.mount("#app");
+    </script>
+  </body>
+</html>
+
+
+
+
