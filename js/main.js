@@ -12,7 +12,7 @@ const app =Vue.createApp({
             github:"./assets/images/github.svg",
             instagram:"./assets/images/instagram.svg",
             img_out_of_stock:"./assets/images/out-of-stock-img.png",
-            description:" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, perferendis.",
+            description:"Chaussettes super doux et extensible",
             link:"https://github.com/TalelMejri",
             instock:true,
             inventery:100,
@@ -22,7 +22,12 @@ const app =Vue.createApp({
                 {id:2002,name:"Chaussette Blue",prix:325,color:"Blue",image:"./assets/images/socks_blue.jpg",quantity:25,cart:0}
             ],
             sizes:[
-                {id:0,taille:'39'},{id:1,taille:'40'},{id:2,taille:'41'},{id:3,taille:'42'},{id:4,taille:'43'},{id:5,taille:'44'}
+                {id:0,taille:'39'},
+                {id:1,taille:'40'},
+                {id:2,taille:'41'},
+                {id:3,taille:'42'},
+                {id:4,taille:'43'},
+                {id:5,taille:'44'}
             ],
             size_select:[],
             tab_favorite:[]
@@ -63,6 +68,12 @@ const app =Vue.createApp({
                  this.variants[this.select].cart++;
                  this.variants[this.select].quantity--;
               }
+        },
+        delete_cart(){
+            if(this.nombre_possible_cart>0){
+                this.variants[this.select].cart--;
+                this.variants[this.select].quantity++;
+             }
         }
        /* translate(prop){
            return(this[this.lang][prop]);
@@ -102,6 +113,9 @@ const app =Vue.createApp({
         },
         test_stock(){
             return this.variants[this.select].quantity > 0 ?  true : false;
+        },
+       nombre_possible_cart(){
+            return this.variants[this.select].cart;
         },
         nombre_total_cart(){
             let count=0;

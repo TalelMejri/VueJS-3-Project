@@ -5,9 +5,16 @@ body {
     color: #282828;
 
 }
+
 .disabled_image{
   filter: grayscale(1500);
 }
+
+.disabled_button{
+  cursor: not-allowed !important;
+  background-color: gray !important;
+}
+
 @keyframes fadeInFromTop {
   from {
     opacity: 0;
@@ -44,7 +51,7 @@ body {
    }
 
   .circle-3 {
-    top: 80%;
+    top: 70%;
     right: 25%;
     width: 40px;
     height: 40px;
@@ -146,11 +153,29 @@ animation: left 1s infinite ;
 
   .button {
     margin: 30px;
-    background-color: #39495c;
+    background-color: green;
     border-radius:15px;
     border: none;
     font-size: 18px;
     width: 100px;
+    cursor: pointer;
+    height: 60px;
+    color: white;
+    padding: 20px;
+    box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
+      inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
+      inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+    text-align: center;
+  }
+
+  .button_moins{
+    margin: 30px;
+    background-color: red;
+    border-radius:15px;
+    border: none;
+    font-size: 18px;
+    width: 120px;
+    cursor: pointer;
     height: 60px;
     color: white;
     padding: 20px;

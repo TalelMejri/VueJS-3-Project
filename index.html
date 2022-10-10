@@ -61,8 +61,9 @@
          <!--<p v-if="inventery>10">En stock</p>
           <p v-else-if="inventery>15">presue</p>
           <p v-else="inventery>20">En repture de stock</p>--> 
-          <p v-if="!test_stock">
-            <img class="image_personel" :src="img_out_of_stock" alt="">
+          <p v-if="!test_stock" style="color:red">
+              Out Of Stock
+             <!--<img class="image_personel" :src="img_out_of_stock" alt="">-->
           </p>
           <p v-else style="color:green">
               in stock
@@ -76,7 +77,7 @@
           </div>
        
           <h4>prix : </h4>
-                   <p style="margin-left:40px;color:#000;font-size: 15px;" >{{ prix}} dt</p> 
+               <p style="margin-left:40px;color:#000;font-size: 15px;" >{{ prix}} dt</p> 
           <h4>Detail</h4>
           <ul>
             <li v-for="detail in details">
@@ -105,7 +106,9 @@
                 </span>
             </li>
           </ul>
-           <button class="button" :disabled="test_stock==false" style="cursor:pointer" @click="add_cart()">Add <i class="fa-solid fa-plus"></i> </button> <small :style="{color:test_stock==true ? '' : 'red' }">Nombre available({{nombre_possible}})</small>
+           <button class="button" :class="{disabled_button:test_stock==false}"  @click="add_cart()">Add <i class="fa-solid fa-plus"></i> </button> 
+           <small :style="{color:test_stock==true ? '' : 'red' }">Nombre available({{nombre_possible}})</small>
+           <button class="button_moins" :class="{disabled_button:nombre_possible_cart==0}"  @click="delete_cart()">Delete <i class="fa-solid fa-minus"></i> </button>
           </div>
         </div>
       </div>
