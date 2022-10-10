@@ -31,6 +31,8 @@ const app =Vue.createApp({
                 {id:5,taille:'44'}
             ],
             size_select:[],
+            size_select_old:[],
+            selected_size:0,
             tab_favorite:[]
         }
     },
@@ -38,6 +40,8 @@ const app =Vue.createApp({
         /**initialiser size 39 */
         this.size_select.push({'size':39,'id':2001});
         this.size_select.push({'size':39,'id':2002});
+        this.size_select_old.push({'size':39,'id':2001});
+        this.size_select_old.push({'size':39,'id':2002});
     },
     methods:{
         /*Upadte select to index variant courant*/
@@ -46,12 +50,14 @@ const app =Vue.createApp({
         },
         /* show size */
         size_choice(size){
-           let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
-          if(item){
+            let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
+            let olditem = this.size_select_old.find(x => x.id == this.id);//returne case qui pointe  
+           if(item){
               if(item.size==size){
                 this.size_select.splice(this.size_select.indexOf(size),1);
               }else{
-                 item.size = size;
+                olditem.size=item.size; 
+                item.size = size;
               }
           }else{
             this.size_select.push({'size':size,'id':this.id});
@@ -71,8 +77,15 @@ const app =Vue.createApp({
         },
         add_cart(){
               if(this.nombre_possible>0){
+                if(this.size_select.find(x => x.id == this.id).size == this.size_select_old.find(x => x.id == this.id).size){
                  this.variants[this.select].cart++;
                  this.variants[this.select].quantity--;
+                }else{
+                    this.variants[this.select].quantity+=this.variants[this.select].cart-1;
+                    this.variants[this.select].cart=1;
+                    this.size_select_old.find(x => x.id == this.id).size = this.size_select.find(x => x.id == this.id).size;
+                    
+                }
               }
         },
         delete_cart(){
@@ -133,6 +146,7 @@ const app =Vue.createApp({
             })
             return count;
         },
+
         prix_total(){
             let count=0;
             this.variants.forEach(variant=>{
