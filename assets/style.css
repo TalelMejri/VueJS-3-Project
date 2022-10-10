@@ -5,7 +5,9 @@ body {
     color: #282828;
 
 }
-
+.disabled_image{
+  filter: grayscale(1500);
+}
 @keyframes fadeInFromTop {
   from {
     opacity: 0;
