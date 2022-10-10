@@ -7,6 +7,7 @@ const app =Vue.createApp({
             //showpreloader:false,
             selctsize:true,
             show_list_favorite:0,
+            show_list_magasin:0,
             facebook:"./assets/images/facebook.svg",
             favorite_icon:"./assets/images/heart.svg",
             github:"./assets/images/github.svg",
@@ -32,6 +33,11 @@ const app =Vue.createApp({
             size_select:[],
             tab_favorite:[]
         }
+    },
+    created(){
+        /**initialiser size 39 */
+        this.size_select.push({'size':39,'id':2001});
+        this.size_select.push({'size':39,'id':2002});
     },
     methods:{
         /*Upadte select to index variant courant*/
@@ -108,19 +114,29 @@ const app =Vue.createApp({
         size_final(){
             return this.size_select.find(x=>x.id==this.id)?.size;
         },
+        /* nombre quantity possible  */
         nombre_possible(){
             return this.variants[this.select].quantity;
         },
+        /* in stock */
         test_stock(){
             return this.variants[this.select].quantity > 0 ?  true : false;
         },
-       nombre_possible_cart(){
+        /* */
+        nombre_possible_cart(){
             return this.variants[this.select].cart;
         },
         nombre_total_cart(){
             let count=0;
             this.variants.forEach(variant=>{
                 count+=variant.cart;
+            })
+            return count;
+        },
+        prix_total(){
+            let count=0;
+            this.variants.forEach(variant=>{
+                count+=variant.cart*variant.prix;
             })
             return count;
         }

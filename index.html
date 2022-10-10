@@ -15,13 +15,45 @@
         
       </div>
     <div>
-      <button :disabled="nombre_total_cart==0"  class="cart">
+      <button :disabled="nombre_total_cart==0" @click="show_list_magasin=1"  class="cart">
           <i class="fa-solid fa-cart-shopping"></i><span id="contenu_number">{{nombre_total_cart}}</span>
       </button>
+
+      <div  v-if="show_list_magasin"  class="popup-below">
+        <div v-if="show_list_magasin" class="popup_magasin">
+           <h1 >List Purchases :</h1>
+          <div v-for="variant in variants" style="display:block" :key="variant.id">
+            <div v-if="variant.cart>0">
+                <div class="contenu_magasin"> 
+                  <table>
+                    <tr>
+                      <td> Article : {{variant.name}}</td>
+                      <td style="padding-top:40px;"> 
+                        <img :src="variant.image" id="social_favorite" alt="">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> Prix :{{variant.prix}}</td>
+                    </tr>
+                    <tr>
+                      <td> Quantity :{{variant.quantity}}</td>
+                      <td> Taille   :{{size_select.find(x=>x.id==variant.id).size}}</td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+            <br>
+          </div>
+             <span style="font-weight: 600;"> Prix Total : {{prix_total}} Dt</span>
+          <b @click="show_list_magasin=0" id="close">X</b>
+        </div>
+       
+      </div>
+
       <button :disabled="tab_favorite==''"  @click="show_list_favorite=1" class="cart">
          List Favorite <i :style="tab_favorite!='' ? 'color:red' : ''" class="fa-regular fa-heart"></i>
       </button>
-    </div>
+   
     <div  v-if="show_list_favorite"  class="popup-below">
       <div v-if="show_list_favorite" class="popup">
          <h1 style="padding-top:30px;">List Favorite :</h1>
