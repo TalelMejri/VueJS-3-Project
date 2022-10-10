@@ -12,11 +12,11 @@
   <body>
     <div id="app">
       <div class="nav-bar">
-      
+        
       </div>
     <div>
-      <button class="cart">
-          <i class="fa-solid fa-cart-shopping"></i>
+      <button :disabled="nombre_total_cart==0"  class="cart">
+          <i class="fa-solid fa-cart-shopping"></i><span id="contenu_number">{{nombre_total_cart}}</span>
       </button>
       <button :disabled="tab_favorite==''"  @click="show_list_favorite=1" class="cart">
          List Favorite <i :style="tab_favorite!='' ? 'color:red' : ''" class="fa-regular fa-heart"></i>
@@ -61,8 +61,11 @@
          <!--<p v-if="inventery>10">En stock</p>
           <p v-else-if="inventery>15">presue</p>
           <p v-else="inventery>20">En repture de stock</p>--> 
-          <p v-if="instock">
+          <p v-if="!test_stock">
             <img class="image_personel" :src="img_out_of_stock" alt="">
+          </p>
+          <p v-else style="color:green">
+              in stock
           </p>
           <p>{{description}}</p>
           <div >
@@ -102,6 +105,7 @@
                 </span>
             </li>
           </ul>
+           <button class="button" :disabled="test_stock==false" style="cursor:pointer" @click="add_cart()">Add <i class="fa-solid fa-plus"></i> </button> <small :style="{color:test_stock==true ? '' : 'red' }">Nombre available({{nombre_possible}})</small>
           </div>
         </div>
       </div>

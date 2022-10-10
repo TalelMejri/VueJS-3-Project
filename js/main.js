@@ -18,8 +18,8 @@ const app =Vue.createApp({
             inventery:100,
             details:['50% COTON','30% laine','20% polyester'],
             variants:[
-                {id:2001,name:"Chaussette Green",prix:250,color:"Green",image:"./assets/images/socks_green.jpg"},
-                {id:2002,name:"Chaussette Blue",prix:325,color:"Blue",image:"./assets/images/socks_blue.jpg"}
+                {id:2001,name:"Chaussette Green",prix:250,color:"Green",image:"./assets/images/socks_green.jpg",quantity:10,cart:0},
+                {id:2002,name:"Chaussette Blue",prix:325,color:"Blue",image:"./assets/images/socks_blue.jpg",quantity:25,cart:0}
             ],
             sizes:[
                 {id:0,taille:'39'},{id:1,taille:'40'},{id:2,taille:'41'},{id:3,taille:'42'},{id:4,taille:'43'},{id:5,taille:'44'}
@@ -33,7 +33,7 @@ const app =Vue.createApp({
         updatedselect(id) {
             this.select=id;
         },
-        /*show size*/
+        /* show size */
         size_choice(size){
            let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
           if(item){
@@ -58,38 +58,57 @@ const app =Vue.createApp({
              //console.log(this.variants.find(v=>v.id=id));
             //this.variants[this.select].favorite= this.variants[this.select].favorite ? 0 : 1;
         },
+        add_cart(){
+              if(this.nombre_possible>0){
+                 this.variants[this.select].cart++;
+                 this.variants[this.select].quantity--;
+              }
+        }
        /* translate(prop){
            return(this[this.lang][prop]);
         }  */
     },
     computed:{
-          /* image for select courant*/
+          /* image for select courant */
         image(){
             return this.variants[this.select].image;
         },
-           /*name for select courant*/
+           /* name for select courant */
         name(){
             return this.variants[this.select].name;
         },
-        /*prix for select courant*/
+        /* prix for select courant */
         prix(){
             return this.variants[this.select].prix;
         },
-        /**color for chausset */
+        /* color for chausset */
         color(){
             return this.variants[this.select].color;
         },
-      /**id for chaussete */
+         /* id for chaussete */
         id(){
             return this.variants[this.select].id;
         },
-         /**test favorite for chaussette */
+         /* test favorite for chaussette */
         test_favorite(){
             return this.tab_favorite.includes(this.id);
         },
-         /**size choisit */
+         /* size choisit */
         size_final(){
             return this.size_select.find(x=>x.id==this.id)?.size;
+        },
+        nombre_possible(){
+            return this.variants[this.select].quantity;
+        },
+        test_stock(){
+            return this.variants[this.select].quantity > 0 ?  true : false;
+        },
+        nombre_total_cart(){
+            let count=0;
+            this.variants.forEach(variant=>{
+                count+=variant.cart;
+            })
+            return count;
         }
     }
  })
