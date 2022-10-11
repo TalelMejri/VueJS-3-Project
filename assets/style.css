@@ -1,9 +1,8 @@
 body {
-     background-color: whitesmoke;
+    background-color: whitesmoke;
     margin: 0px;
     font-family: tahoma;
     color: #282828;
-
 }
 
 .disabled_image{
@@ -85,7 +84,8 @@ body {
       box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
       inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
       inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
-     }
+    }
+
 #pre{
     display: flex;
     justify-content: center;
@@ -312,7 +312,6 @@ animation: left 1s infinite ;
  top: 15px;
  margin-left: 90%;
  cursor: pointer;
-
 }
 .favorite{
     position: absolute;
@@ -519,7 +518,7 @@ animation: left 1s infinite ;
   cursor: pointer;
 }
   
-  
+
   @media only screen and (max-width: 600px) {
     .container {
       flex-direction: column;
