@@ -23,6 +23,6 @@ app.component('preloader',{
         
     },
     mounted() {
-        setTimeout(()=>this.showpreloader=true,2000)
+        setTimeout(()=>this.showpreloader=true,2000);
     },
  })

@@ -2,7 +2,7 @@
 const app =Vue.createApp({
     data(){
         return{
-            product:"Chaussette",
+          
             select:0,
             //showpreloader:false,
             selctsize:true,
@@ -13,7 +13,7 @@ const app =Vue.createApp({
             github:"./assets/images/github.svg",
             instagram:"./assets/images/instagram.svg",
             img_out_of_stock:"./assets/images/out-of-stock-img.png",
-            description:"Chaussettes super doux et extensible",
+            
             link:"https://github.com/TalelMejri",
             instock:true,
             inventery:100,
@@ -52,7 +52,6 @@ const app =Vue.createApp({
         updatedselect(id) {
             this.select=id;
         },
-
         add_cart(){
          
            if(this.nombre_possible>0){
@@ -67,9 +66,8 @@ const app =Vue.createApp({
                 this.size_select_final.find(x => x.id == this.id).size = this.size_select.find(x => x.id == this.id).size; 
             }
       },
-
       size_choice(size){
-            
+
         let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
         let item_old=this.size_select_old.find(x=>x.id==this.id);//returne case qui pointe  
         if(item ){
@@ -83,6 +81,7 @@ const app =Vue.createApp({
               this.size_select.push({'size':size,'id':this.id});
          }
       },
+     
 
       delete_cart(){
           if(this.nombre_possible_cart>0){
@@ -92,18 +91,7 @@ const app =Vue.createApp({
       },
         /* show size */
       
-        show_favorite(){
-            this.show_list_favorite=1;
-        },
-        updatefavorite(id){
-             if(this.tab_favorite.includes(id)){
-                this.tab_favorite.splice(this.tab_favorite.indexOf(id),1);
-             }else{
-                this.tab_favorite.push(id);
-             }
-             //console.log(this.variants.find(v=>v.id=id));
-            //this.variants[this.select].favorite= this.variants[this.select].favorite ? 0 : 1;
-        },
+     
       
        /* translate(prop){
            return(this[this.lang][prop]);
