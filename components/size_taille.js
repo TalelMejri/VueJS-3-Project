@@ -1,6 +1,6 @@
 app.component("size_taille",{
     template:`
-    <h3>Size</h3>
+    <h3> Size </h3>
     <ul  style="display: flex;gap:15px">
       <li v-for="(size,index) in sizes" :key="size.id" @click="size_choice(size.taille)"> 
          <span id="size" class="color-circle" 
@@ -12,7 +12,8 @@ app.component("size_taille",{
                 {{size.taille}}
           </span>
       </li>
-    </ul>`,
+    </ul>
+    `,
     props:{
         size_final:Array|String,
         sizes:Array,
@@ -22,7 +23,6 @@ app.component("size_taille",{
       ],
     data(){
         return{
-
         }
     },
     methods: {

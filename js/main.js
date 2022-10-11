@@ -2,7 +2,6 @@
 const app =Vue.createApp({
     data(){
         return{
-          
             select:0,
             //showpreloader:false,
             selctsize:true,
@@ -13,7 +12,6 @@ const app =Vue.createApp({
             github:"./assets/images/github.svg",
             instagram:"./assets/images/instagram.svg",
             img_out_of_stock:"./assets/images/out-of-stock-img.png",
-            
             link:"https://github.com/TalelMejri",
             instock:true,
             inventery:100,
@@ -67,7 +65,6 @@ const app =Vue.createApp({
             }
       },
       size_choice(size){
-
         let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
         let item_old=this.size_select_old.find(x=>x.id==this.id);//returne case qui pointe  
         if(item ){
@@ -81,8 +78,6 @@ const app =Vue.createApp({
               this.size_select.push({'size':size,'id':this.id});
          }
       },
-     
-
       delete_cart(){
           if(this.nombre_possible_cart>0){
               this.variants[this.select].cart--;
@@ -90,15 +85,10 @@ const app =Vue.createApp({
            }
       },
         /* show size */
-      
-     
-      
        /* translate(prop){
            return(this[this.lang][prop]);
         }  */
     },
-
-    
     computed:{
           /* image for select courant */
         image(){

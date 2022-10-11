@@ -148,7 +148,15 @@ return{
     add_size_verfied:0,
     description:"Chaussettes super doux et extensible",
     product:"Chaussette",
+    style:[
+        {test:"test"},
+        {TEST1:"TEST1"},
+        {talel:"TALEL"}
+    ]
 }
+    },
+    created(){
+        console.log(...this.style);
     },
     methods: {
         updatedselect(id) {
