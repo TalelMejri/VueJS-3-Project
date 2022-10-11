@@ -32,43 +32,66 @@ const app =Vue.createApp({
             ],
             size_select:[],
             size_select_old:[],
-            selected_size:0,
+            size_select_final:[],
             tab_favorite:[],
-            mystyle:{
-                'color':this.color_variant
-            },
-            imagestyel:{
-                filter:'grayscale(1500)'
-            }
+            add_size_verfied:0,
+            size:39,
         }
     },
     created(){
         /**initialiser size 39 */
-        this.size_select.push({'size':39,'id':2001});
-        this.size_select.push({'size':39,'id':2002});
         this.size_select_old.push({'size':39,'id':2001});
         this.size_select_old.push({'size':39,'id':2002});
+        this.size_select.push({'size':39,'id':2002});
+        this.size_select.push({'size':39,'id':2001});
+        this.size_select_final.push({'size':39,'id':2001});
+        this.size_select_final.push({'size':39,'id':2002});
     },
     methods:{
         /*Upadte select to index variant courant*/
         updatedselect(id) {
             this.select=id;
         },
-        /* show size */
-        size_choice(size){
-            let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
-            let olditem = this.size_select_old.find(x => x.id == this.id);//returne case qui pointe  
-           if(item){
-              if(item.size==size){
-                this.size_select.splice(this.size_select.indexOf(size),1);
-              }else{
-                olditem.size=item.size; 
-                item.size = size;
-              }
-          }else{
-            this.size_select.push({'size':size,'id':this.id});
+
+        add_cart(){
+         
+           if(this.nombre_possible>0){
+                if(this.size_select.find(x => x.id == this.id).size == this.size_select_old.find(x => x.id == this.id).size){
+                    this.variants[this.select].cart++;
+                    this.variants[this.select].quantity--;
+                }else{
+                    this.variants[this.select].quantity+=this.variants[this.select].cart-1;
+                    this.variants[this.select].cart=1;
+                    this.size_select_old.find(x => x.id == this.id).size = this.size_select.find(x => x.id == this.id).size; 
+                }
+                this.size_select_final.find(x => x.id == this.id).size = this.size_select.find(x => x.id == this.id).size; 
+            }
+      },
+
+      size_choice(size){
+            
+        let item = this.size_select.find(x => x.id == this.id);//returne case qui pointe  
+        let item_old=this.size_select_old.find(x=>x.id==this.id);//returne case qui pointe  
+        if(item ){
+            if(item.size==size){
+                 this.size_select.splice(this.size_select.indexOf(size),1);
+            }else{
+                 item_old.size=item.size;
+                 item.size = size;
+            }
+        }else{
+              this.size_select.push({'size':size,'id':this.id});
+         }
+      },
+
+      delete_cart(){
+          if(this.nombre_possible_cart>0){
+              this.variants[this.select].cart--;
+              this.variants[this.select].quantity++;
            }
-        },
+      },
+        /* show size */
+      
         show_favorite(){
             this.show_list_favorite=1;
         },
@@ -81,29 +104,13 @@ const app =Vue.createApp({
              //console.log(this.variants.find(v=>v.id=id));
             //this.variants[this.select].favorite= this.variants[this.select].favorite ? 0 : 1;
         },
-        add_cart(){
-              if(this.nombre_possible>0){
-                if(this.size_select.find(x => x.id == this.id).size == this.size_select_old.find(x => x.id == this.id).size){
-                 this.variants[this.select].cart++;
-                 this.variants[this.select].quantity--;
-                }else{
-                    this.variants[this.select].quantity+=this.variants[this.select].cart-1;
-                    this.variants[this.select].cart=1;
-                    this.size_select_old.find(x => x.id == this.id).size = this.size_select.find(x => x.id == this.id).size;
-                    
-                }
-              }
-        },
-        delete_cart(){
-            if(this.nombre_possible_cart>0){
-                this.variants[this.select].cart--;
-                this.variants[this.select].quantity++;
-             }
-        }
+      
        /* translate(prop){
            return(this[this.lang][prop]);
         }  */
     },
+
+    
     computed:{
           /* image for select courant */
         image(){
@@ -155,7 +162,6 @@ const app =Vue.createApp({
             })
             return count;
         },
-
         prix_total(){
             let count=0;
             this.variants.forEach(variant=>{
