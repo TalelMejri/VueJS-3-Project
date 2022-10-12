@@ -37,7 +37,11 @@ app.component('review',{
         comment:String
     },
     methods: {
-        
+        Onsubmit(){
+            if(this.nom=="" && this.email=="" && this.message==""){
+               
+            }
+        }
     },
     
 })
