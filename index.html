@@ -14,8 +14,11 @@
   </head>
   <body>
     <div id="app">
+      
       <div class="nav-bar"></div>
       <product_dispaly @updatedselect="updatedselect" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
+      <button type="button" @click="show_form=true">Add Review</button>
+      <review  v-if="show_form==true" :commentaire="commentaire" :comment="comment" @add_comment="add_comment"></review>
       <!--:showpreloader="showpreloader"-->
       <preloader></preloader>
     </div>
@@ -24,6 +27,8 @@
     <script src="./components/preloader.js"></script>
     <script src="./components/product_display.js"></script>
     <script src="./components/size_taille.js"></script>
+    <script src="./components/deatils.js"></script>
+    <script src="./components/review.js"></script>
     <script src="https://kit.fontawesome.com/c5bebe1cfa.js" crossorigin="anonymous"></script>
     <script>
        const mountapp=app.mount("#app");

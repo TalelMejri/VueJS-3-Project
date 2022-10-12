@@ -9,6 +9,7 @@ const app =Vue.createApp({
             show_list_magasin:0,
             facebook:"./assets/images/facebook.svg",
             favorite_icon:"./assets/images/heart.svg",
+            comment:"./assets/images/comment.png",
             github:"./assets/images/github.svg",
             instagram:"./assets/images/instagram.svg",
             img_out_of_stock:"./assets/images/out-of-stock-img.png",
@@ -20,6 +21,7 @@ const app =Vue.createApp({
                 {id:2001,name:"Chaussette Green",prix:250,color:"Green",image:"./assets/images/socks_green.jpg",quantity:10,cart:0},
                 {id:2002,name:"Chaussette Blue",prix:325,color:"Blue",image:"./assets/images/socks_blue.jpg",quantity:25,cart:0}
             ],
+            show_form:false,
             sizes:[
                 {id:0,taille:'39'},
                 {id:1,taille:'40'},
@@ -34,6 +36,7 @@ const app =Vue.createApp({
             tab_favorite:[],
             add_size_verfied:0,
             size:39,
+            commentaire:[],
         }
     },
     created(){
@@ -47,6 +50,9 @@ const app =Vue.createApp({
     },
     methods:{
         /*Upadte select to index variant courant*/
+        add_comment(comment){
+            this.commentaire.push(comment);
+        },
         updatedselect(id) {
             this.select=id;
         },

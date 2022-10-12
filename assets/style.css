@@ -280,6 +280,44 @@ animation: left 1s infinite ;
     padding: 78px;
 }
 
+.image_review{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap:25px;
+}
+
+.color_image {
+  width: 100%;
+  margin-right: 25px;
+  background-size: cover;
+  position: relative;
+}
+.color_image img{
+  height: 500px;
+  width: 500px;
+  margin-right: 100px;
+  border: none;
+}
+.popup_form{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    flex-direction: column;
+    transform: translate(-50%,-50%);
+    background-image: linear-gradient(to right,
+      #83a4d4
+      ,
+      #b6fbff);
+    width:70%;
+    border-radius: 10px;
+    height:60%;
+    z-index: 999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:88px;
+}
+
 .popup{
     position: fixed;
     top: 50%;

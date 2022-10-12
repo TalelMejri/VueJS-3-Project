@@ -92,11 +92,7 @@ app.component('product_dispaly',{
       <h3>prix : </h3>
            <p class="prix">{{ prix}} dt</p> 
       <h3>Detail</h3>
-      <ul>
-        <li v-for="detail in details">
-            {{detail}}
-        </li>
-      </ul>
+      <details-part :details="details"></details-part>
       <h3>Color</h3>
       <div style="display: flex;margin-left:25px;">
        <!-- <li v-for="(variant,index) in variants" :key="variant.id">
