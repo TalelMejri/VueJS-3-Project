@@ -13,7 +13,23 @@ app.component('review',{
                      <input type="email" v-model="email">
                      <label>Messages :</label>
                      <textarea name="" id="" cols="30" rows="10"  v-model="message"></textarea>
-                     <button class="button">Send </buuton>
+                     
+                     <label for="rating">Evaluation :</label>
+                     <select id="rating" v-model.number="rating">
+                         <option>5</option>
+                         <option>4</option>
+                         <option>3</option>
+                         <option>2</option>
+                         <option>1</option>
+                     </select>
+                    <br>
+                     <label for="recommand">do you want recommande this produit ?</label>
+                     <select id="recommand" v-model.number="recomende">
+                         <option>Yes</option>
+                         <option>No</option>
+                     </select>
+
+                     <button class="button">Send </button>
                 </form>
              </div>
         </div>
@@ -29,17 +45,39 @@ app.component('review',{
         return{
             nom:'',
             email:'',
-            message:''
+            message:'',
+            recomende:'',
+            rating:'',
         }
     },
+    emits:[
+"add_comment","show_form_function"
+    ],
     props:{
         commentaire:Array,
-        comment:String
+        comment:String,
+        show_form:Boolean
     },
     methods: {
         Onsubmit(){
-            if(this.nom=="" && this.email=="" && this.message==""){
-               
+            if(this.nom=="" && this.email=="" && this.message=="" && this.recomende=="" && this.rating==""){
+                    alert("check filed");
+            }else{
+                let produit={
+                    nom:this.nom,
+                    email:this.email,
+                    message:this.message,
+                    recomende:this.recomende,
+                    rating:this.rating
+                };
+                this.$emit("add_comment",produit);
+                this.$emit("show_form_function");
+                this.nom="",
+                this.email="";
+                this.message="",
+                this.recomende=null;
+                this.rating=null;
+            
             }
         }
     },
