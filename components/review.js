@@ -8,11 +8,11 @@ app.component('review',{
              <div class="review-container">
                 <form @submit.prevent="Onsubmit">
                      <label>Name :</label>
-                     <input type="text" >
+                     <input type="text" v-model="nom">
                      <label>Email :</label>
-                     <input type="email" >
+                     <input type="email" v-model="email">
                      <label>Messages :</label>
-                     <textarea name="" id="" cols="30" rows="10"></textarea>
+                     <textarea name="" id="" cols="30" rows="10"  v-model="message"></textarea>
                      <button class="button">Send </buuton>
                 </form>
              </div>
@@ -26,7 +26,11 @@ app.component('review',{
     </div>
     `,
     data(){
-
+        return{
+            nom:'',
+            email:'',
+            message:''
+        }
     },
     props:{
         commentaire:Array,

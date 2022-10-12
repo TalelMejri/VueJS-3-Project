@@ -9,7 +9,11 @@ app.component('product_dispaly',{
       <div class="product-image">
           <img :class="{disabled_image:test_stock==false}" :src="image" alt="product">
           <div :style="{color:test_favorite==true ? 'red' : 'gray'}"  class="favorite" @click="updatefavorite(id)" ><i class="fa-solid fa-heart"></i></div>
+          <div class="btn_zone">
+            <button type="button" class="button_comment" @click="show_comment()">Add Review <i class="fa-solid fa-comment"></i></button>
+          </div>
       </div>
+    
       <div style="padding-top:25px;" class="product-info">
 
         <div class="cart_favorite">
@@ -137,7 +141,7 @@ app.component('product_dispaly',{
     "size_choice"
   ],
     data(){
-return{
+      return{
     show_list_favorite:0,
     show_list_magasin:0,
     tab_favorite:[],
@@ -155,6 +159,9 @@ return{
         console.log(...this.style);
     },
     methods: {
+      show_comment(){
+        this.$emit("show_form_function");
+      },
         updatedselect(id) {
             this.$emit("updatedselect",id);
         },

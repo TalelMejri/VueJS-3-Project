@@ -298,6 +298,25 @@ animation: left 1s infinite ;
   margin-right: 100px;
   border: none;
 }
+.btn_zone{
+  display: flex;
+  justify-content: center;
+  
+}
+.btn_zone button{
+  background-color: green;
+  border-radius:15px;
+  position: relative;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  padding: 20px;
+  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
+    inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
+    inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
 .popup_form{
     position: fixed;
     top: 50%;
