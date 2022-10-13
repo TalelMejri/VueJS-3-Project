@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Mastery</title>
     <!-- Import Styles -->
-
     <link rel="stylesheet" href="assets/style.css"/>
     <!-- Import Vue.js -->
     <script src="js/vue.global.js"></script>
@@ -14,10 +13,9 @@
   </head>
   <body>
     <div id="app">
-      
       <div class="nav-bar"></div>
-      <product_dispaly  @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
-      <review  v-if="show_form==true"  :commentaire="commentaire" :comment="comment" @add_comment="add_comment"></review>
+      <product_dispaly @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
+      <review  v-if="show_form==true" :show_form="show_form"  :commentaire="commentaire" @show_form_function="show_form_function" :comment="comment" @add_comment="add_comment"></review>
        <div v-for="comment in commentaire">
            <p>{{comment.nom}}</p>
        </div>

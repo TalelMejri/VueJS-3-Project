@@ -51,7 +51,7 @@ const app =Vue.createApp({
     methods:{
         /*Upadte select to index variant courant*/
         show_form_function(){
-            this.show_form=true;
+            this.show_form=this.show_form==true ? false : true;
         },
         add_comment(comment){
             this.commentaire.push(comment);

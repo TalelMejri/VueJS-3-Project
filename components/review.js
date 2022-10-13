@@ -29,11 +29,12 @@ app.component('review',{
                          <option>No</option>
                      </select>
 
-                     <button class="button">Send </button>
+                     <button style="background-color:yellow;color:orange" class="button">Send </button>
                 </form>
              </div>
         </div>
         <div class="color_image">
+             <span style="margin-left:95%;margin-top:10px;position:absolute;font-size:20px;color:red;cursor:pointer" @click="close_form()"><i class="fa-solid fa-circle-xmark"></i></span>
             <img :src="comment" >
         </div>
        </div>
@@ -51,7 +52,7 @@ app.component('review',{
         }
     },
     emits:[
-"add_comment","show_form_function"
+      "add_comment","show_form_function"
     ],
     props:{
         commentaire:Array,
@@ -79,6 +80,9 @@ app.component('review',{
                 this.rating=null;
             
             }
+        },
+        close_form(){
+            this.$emit("show_form_function");
         }
     },
     

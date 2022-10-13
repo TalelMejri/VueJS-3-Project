@@ -18,7 +18,7 @@ app.component('product_dispaly',{
 
         <div class="cart_favorite">
           <button :disabled="nombre_total_cart==0" @click="show_list_magasin=1"  class="cart">
-              <i class="fa-solid fa-cart-shopping"></i><span id="contenu_number">{{nombre_total_cart}}</span>
+              <i class="fa-solid fa-cart-shopping"></i><span id="contenu_number">{{nombre_total_cart}} </span>
           </button>
           <button :disabled="tab_favorite==''"  @click="show_list_favorite=1" class="cart">
             List Favorite <i :style="tab_favorite!='' ? 'color:red' : ''" class="fa-regular fa-heart"></i>

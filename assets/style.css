@@ -297,6 +297,9 @@ animation: left 1s infinite ;
   width: 500px;
   margin-right: 100px;
   border: none;
+  filter: drop-shadow(2px 4px 6px rgb(156, 154, 154));
+  box-shadow: none;
+  -webkit-box-shadow: none;
 }
 .btn_zone{
   display: flex;
@@ -324,11 +327,11 @@ animation: left 1s infinite ;
     top: 50%;
     left:50%;
     flex-direction: column;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%)scale(0.9);
     background-image: linear-gradient(to right,
-      #83a4d4
-      ,
-      #b6fbff);
+#abbaab
+,
+#ffffff);
     width:70%;
     border-radius: 10px;
     height:60%;
@@ -509,7 +512,7 @@ animation: left 1s infinite ;
     padding: 20px;
     margin: 40px;
     border: 2px solid #d8d8d8;
-    background-color: white;
+    background-color: transparent;
     -webkit-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 2px 15px -12px rgba(0, 0, 0, 0.57);
     box-shadow: 2px 15px -12px rgba(0, 0, 0, 0.57);
@@ -518,7 +521,7 @@ animation: left 1s infinite ;
   .review-container {
     width: 425px;
     padding: 20px;
-    background-color: white;
+    background-color: transparent;
     -webkit-box-shadow: 0px 2px 20px -12px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 0px 2px 20px -12px rgba(0, 0, 0, 0.57);
     box-shadow: 2px 20px -12px rgba(0, 0, 0, 0.57);
@@ -530,20 +533,30 @@ animation: left 1s infinite ;
     margin-bottom: 30px;
   }
   
+
   .review-form .button {
     display: block;
     margin: 30px auto;
   }
-  
+  input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid mediumorchid;
+  }
   select {
     height: 40px;
     font-size: 20px;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
   }
   
   textarea {
+    outline: none;
     width: 95%;
+    border: none;
+    border-bottom: 2px solid mediumorchid;
+    background-color: transparent;
     height: 70px;
     padding: 10px;
     font-size: 20px;
