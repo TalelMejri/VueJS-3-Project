@@ -124,13 +124,16 @@ app.component('product_dispaly',{
         <button class="button_moins" :class="{disabled_button:nombre_possible_cart==0}"  @click="delete_cart()">Delete <i class="fa-solid fa-minus"></i> </button>
       </div>
       <div>
-      <button style="background-color:blue;width:200px" class="button" :class="{disabled_button:commentaire==''}"  @click="show_comments()">Show Comments<i class="fa-solid fa-minus"></i></button>
+      <button style="background-color:blue;width:200px" class="button" :class="{disabled_button:commentaire==''}"  @click="show_comments_click()">Show Comments</button>
      </div>
       </div>
       </div>
     </div>
-    <button @click="plus_compteur()"> Add</button>
-  </div> `,
+    <div v-if="show_comments==true">
+      <button @click="moins_compteur()" style="margin-top:10%;margin-left:31%;position:absolute;width:80px;height:40px">previous</button>
+      <button @click="plus_compteur()" style="margin-top:10%;margin-left:63%;position:absolute;width:80px;height:40px">Next</button>
+    </div>
+    </div> `,
 
   props:{
     variants:Array,
@@ -142,7 +145,8 @@ app.component('product_dispaly',{
     color:String,
     select:Number,
     commentaire:Array,
-    i:Number
+    i:Number,
+    show_comments:Boolean
     
   },
   emits:[
@@ -151,7 +155,8 @@ app.component('product_dispaly',{
     "delete_cart",
     "size_choice",
     "show_comments_function",
-    "plus"
+    "plus",
+    "moins"
   ],
     data(){
       return{
@@ -173,10 +178,13 @@ app.component('product_dispaly',{
         console.log(...this.style);
     },
     methods: {
+      moins_compteur(){
+        this.$emit("moins");
+      },
       plus_compteur(){
         this.$emit("plus");
       },
-      show_comments(){
+      show_comments_click(){
         this.$emit("show_comments_function");
       },
       delete_article(id_cart,cart){

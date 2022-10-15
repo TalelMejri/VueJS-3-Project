@@ -52,12 +52,18 @@ const app =Vue.createApp({
     },
     methods:{
         plus(){
-            if(this.i>=this.commentaire.length){
+            if(this.i==this.commentaire.length){
                 this.i=0;
             }else {
                 this.i++;
             }
-        
+        },
+        moins(){
+            if(this.i==0){
+                this.i=0;
+            }else {
+                this.i--;
+            }
         },
         show_comments_function(){
             this.show_comments=this.show_comments==true ? false : true;

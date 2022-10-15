@@ -7,7 +7,7 @@ app.component('review',{
        <p v-if="show_wrong" class="wrong">All field required</p>
         <h1>Your Review :</h1>
             
-             <div class="review-container">
+             <div class="review-container" style="height:470px">
                 <form @submit.prevent="Onsubmit">
                      <label>Name :</label>
                      <input type="text" v-model="nom">
