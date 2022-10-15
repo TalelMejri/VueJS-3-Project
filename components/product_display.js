@@ -203,7 +203,9 @@ app.component('product_dispaly',{
       valider_article(id_cart,cart){
         let item=this.variants.find(v=>v.id==id_cart);
         if(confirm("do you want valider "+item.name)){
-             item.quantity-=cart;
+            /* console.log(item.quantity);
+             console.log(cart);
+             item.quantity-=cart;*/
              item.cart=0;
              this.show_congrats=true;
              setTimeout(()=>this.show_congrats=false,2000);
