@@ -37,6 +37,8 @@ const app =Vue.createApp({
             add_size_verfied:0,
             size:39,
             commentaire:[],
+            show_comments:false,
+            i:0
         }
     },
     created(){
@@ -49,6 +51,17 @@ const app =Vue.createApp({
         this.size_select_final.push({'size':39,'id':2002});
     },
     methods:{
+        plus(){
+            if(this.i>=this.commentaire.length){
+                this.i=0;
+            }else {
+                this.i++;
+            }
+        
+        },
+        show_comments_function(){
+            this.show_comments=this.show_comments==true ? false : true;
+        },
         /*Upadte select to index variant courant*/
         show_form_function(){
             this.show_form=this.show_form==true ? false : true;

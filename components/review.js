@@ -2,9 +2,11 @@ app.component('review',{
     template:`
     <div class="popup-below">
         <div class="popup_form">
-        <div class="image_review">
+         <div class="image_review">
        <div>
+       <p v-if="show_wrong" class="wrong">All field required</p>
         <h1>Your Review :</h1>
+            
              <div class="review-container">
                 <form @submit.prevent="Onsubmit">
                      <label>Name :</label>
@@ -46,6 +48,7 @@ app.component('review',{
         return{
             nom:'',
             email:'',
+            show_wrong:false,
             message:'',
             recomende:'',
             rating:'',
@@ -62,7 +65,8 @@ app.component('review',{
     methods: {
         Onsubmit(){
             if(this.nom=="" && this.email=="" && this.message=="" && this.recomende=="" && this.rating==""){
-                    alert("check filed");
+                this.show_wrong=true; 
+                setTimeout(()=>this.show_wrong=false,3000);
             }else{
                 let produit={
                     nom:this.nom,
@@ -78,7 +82,7 @@ app.component('review',{
                 this.message="",
                 this.recomende=null;
                 this.rating=null;
-            
+                this.show_form=false;
             }
         },
         close_form(){

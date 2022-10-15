@@ -5,7 +5,7 @@ app.component('product_dispaly',{
         <div :style="{borderColor:color}" class="circle-2"></div>
         <div :style="{borderColor:color}" class="circle-3"></div>
         <div class="product-container">
-    
+      
       <div class="product-image">
           <img :class="{disabled_image:test_stock==false}" :src="image" alt="product">
           <div :style="{color:test_favorite==true ? 'red' : 'gray'}"  class="favorite" @click="updatefavorite(id)" ><i class="fa-solid fa-heart"></i></div>
@@ -123,9 +123,13 @@ app.component('product_dispaly',{
       <div>
         <button class="button_moins" :class="{disabled_button:nombre_possible_cart==0}"  @click="delete_cart()">Delete <i class="fa-solid fa-minus"></i> </button>
       </div>
+      <div>
+      <button style="background-color:blue;width:200px" class="button" :class="{disabled_button:commentaire==''}"  @click="show_comments()">Show Comments<i class="fa-solid fa-minus"></i></button>
+     </div>
       </div>
       </div>
     </div>
+    <button @click="plus_compteur()"> Add</button>
   </div> `,
 
   props:{
@@ -136,34 +140,45 @@ app.component('product_dispaly',{
     size_select:Array,
     size_select_old:Array,
     color:String,
-    select:Number
+    select:Number,
+    commentaire:Array,
+    i:Number
+    
   },
   emits:[
     "updatedselect",
     "add_cart",
     "delete_cart",
-    "size_choice"
+    "size_choice",
+    "show_comments_function",
+    "plus"
   ],
     data(){
       return{
-    show_list_favorite:0,
-    show_list_magasin:0,
-    show_congrats:false,
-    tab_favorite:[],
-    add_size_verfied:0,
-    description:"Chaussettes super doux et extensible",
-    product:"Chaussette",
-    style:[
-        {test:"test"},
-        {TEST1:"TEST1"},
-        {talel:"TALEL"}
-    ]
+       show_list_favorite:0,
+       show_list_magasin:0,
+       show_congrats:false,
+       tab_favorite:[],
+       add_size_verfied:0,
+       description:"Chaussettes super doux et extensible",
+       product:"Chaussette",
+       style:[
+          {test:"test"},
+          {TEST1:"TEST1"},
+          {talel:"TALEL"}
+       ]
 }
     },
     created(){
         console.log(...this.style);
     },
     methods: {
+      plus_compteur(){
+        this.$emit("plus");
+      },
+      show_comments(){
+        this.$emit("show_comments_function");
+      },
       delete_article(id_cart,cart){
         let item=this.variants.find(v=>v.id==id_cart);
         if(confirm("do you want delete "+item.name)){
@@ -174,9 +189,7 @@ app.component('product_dispaly',{
               }else{
                 this.show_list_magasin=1;
               }
-           
         }
-       
         //this.variants[id].quantity+=cart;
       },
       valider_article(id_cart,cart){
@@ -216,20 +229,20 @@ app.component('product_dispaly',{
              }
              //console.log(this.variants.find(v=>v.id=id));
             //this.variants[this.select].favorite= this.variants[this.select].favorite ? 0 : 1;
-        },
+          },
         size_choice(size){
             this.$emit("size_choice",size);
-        }
+         }
     },
     computed:{
      /* image for select courant */
      image(){
         return this.variants[this.select].image;
-    },
+     },
        /* name for select courant */
     name(){
         return this.variants[this.select].name;
-    },
+     },
     /* prix for select courant */
     prix(){
         return this.variants[this.select].prix;

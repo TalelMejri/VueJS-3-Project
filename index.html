@@ -14,15 +14,21 @@
   <body>
    
     <div id="app">
+      <preloader></preloader>
       <div class="nav-bar"></div>
       <canvas id="my-canvas"></canvas>
-      <product_dispaly @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
+   
+      <product_dispaly style="position: relative;" @plus="plus" :i="i" :commentaire="commentaire" @show_comments_function="show_comments_function" @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
       <review  v-if="show_form==true" :show_form="show_form"  :commentaire="commentaire" @show_form_function="show_form_function" :comment="comment" @add_comment="add_comment"></review>
-       <div v-for="comment in commentaire">
-           <p>{{comment.nom}}</p>
-       </div>
+      <div v-if="show_comments==true" style="display:flex;gap:25px;justify-content: center;">
+        <ul class="review-container">
+              <li>{{commentaire[i].nom}}</li>
+              <li>{{commentaire[i].message}}</li>
+              <li>{{commentaire[i].email}}</li>
+         </ul>
+      </div>
+     
       <!--:showpreloader="showpreloader"-->
-      <preloader></preloader>
     </div>
     <!-- Import Js -->
     <script src="js/main.js"></script>
