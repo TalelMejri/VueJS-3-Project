@@ -24,7 +24,7 @@ app.component('product_dispaly',{
             List Favorite <i :style="tab_favorite!='' ? 'color:red' : ''" class="fa-regular fa-heart"></i>
          </button>
         </div>
-
+        <valider_successfully :show_congrats="show_congrats"></valider_successfully>
           <div  v-if="show_list_magasin"  class="popup-below">
             <div v-if="show_list_magasin" class="popup_magasin">
                <h1 >List Purchases :</h1>
@@ -44,6 +44,10 @@ app.component('product_dispaly',{
                         <tr>
                           <td> Quantity :{{variant.cart}}</td>
                           <td> Taille   :{{size_select_final.find(x=>x.id==variant.id).size}}</td>
+                        </tr>
+                        <tr>
+                          <td   style="background-color:red;cursor: pointer;text-align:center;padding:10px;color:#fff" @click="delete_article(variant.id,variant.cart)">Delete</td>
+                          <td   style="background-color:blue;cursor: pointer;text-align:center;padding:2px;color:#fff"  @click="valider_article(variant.id,variant.cart)">Valider</td>
                         </tr>
                       </table>
                     </div>
@@ -144,6 +148,7 @@ app.component('product_dispaly',{
       return{
     show_list_favorite:0,
     show_list_magasin:0,
+    show_congrats:false,
     tab_favorite:[],
     add_size_verfied:0,
     description:"Chaussettes super doux et extensible",
@@ -159,6 +164,35 @@ app.component('product_dispaly',{
         console.log(...this.style);
     },
     methods: {
+      delete_article(id_cart,cart){
+        let item=this.variants.find(v=>v.id==id_cart);
+        if(confirm("do you want delete "+item.name)){
+             item.quantity+=cart;
+             item.cart=0;
+              if(this.prix_total==0){
+                this.show_list_magasin=0;
+              }else{
+                this.show_list_magasin=1;
+              }
+           
+        }
+       
+        //this.variants[id].quantity+=cart;
+      },
+      valider_article(id_cart,cart){
+        let item=this.variants.find(v=>v.id==id_cart);
+        if(confirm("do you want valider "+item.name)){
+             item.quantity-=cart;
+             item.cart=0;
+             this.show_congrats=true;
+             setTimeout(()=>this.show_congrats=false,2000);
+             if(this.prix_total>0){
+             setTimeout(()=>this.show_list_magasin=true,2000);
+            }else{
+              this.show_list_magasin=0;
+            }
+        }
+      },
       show_comment(){
         this.$emit("show_form_function");
       },

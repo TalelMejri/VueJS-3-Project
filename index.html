@@ -12,8 +12,10 @@
    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>-->
   </head>
   <body>
+   
     <div id="app">
       <div class="nav-bar"></div>
+      <canvas id="my-canvas"></canvas>
       <product_dispaly @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
       <review  v-if="show_form==true" :show_form="show_form"  :commentaire="commentaire" @show_form_function="show_form_function" :comment="comment" @add_comment="add_comment"></review>
        <div v-for="comment in commentaire">
@@ -21,7 +23,6 @@
        </div>
       <!--:showpreloader="showpreloader"-->
       <preloader></preloader>
-    
     </div>
     <!-- Import Js -->
     <script src="js/main.js"></script>
@@ -30,6 +31,8 @@
     <script src="./components/size_taille.js"></script>
     <script src="./components/deatils.js"></script>
     <script src="./components/review.js"></script>
+    <script src="./components/index.min.js"></script>
+    <script src="./components/valider_successfully.js"></script>
     <script src="https://kit.fontawesome.com/c5bebe1cfa.js" crossorigin="anonymous"></script>
     <script>
        const mountapp=app.mount("#app");
@@ -37,6 +40,11 @@
   </body>
 </html>
 
+<script>
+            var confettiSettings = { target: 'my-canvas' };
+            var confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+</script>
 
 
 
