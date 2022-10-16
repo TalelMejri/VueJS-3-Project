@@ -20,24 +20,8 @@
    
       <product_dispaly style="position: relative;" :show_comments="show_comments" @plus="plus" @moins="moins" :i="i" :commentaire="commentaire" @show_comments_function="show_comments_function" @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
       <review  v-if="show_form==true" :show_form="show_form"  :commentaire="commentaire" @show_form_function="show_form_function" :comment="comment" @add_comment="add_comment"></review>
-      <div v-if="show_comments==true" style="display:flex;gap:25px;justify-content: center;">
-       
-        <h1 style="position:absolute;margin-top:-30px">Comments :</h1>
-        <ul class="review-container">
-              <li>name :{{commentaire[i].nom}}</li>
-              <li>message :{{commentaire[i].message}}</li>
-              <li>email :{{commentaire[i].email}}</li>
-              <li>Recomande :{{commentaire[i].recomende==true ? "Oui" : "Non"}}</li>
-              <li style="display:flex;justify-content: center;">
-               <span v-for="rate in commentaire[i].rating">
-                   <i style="color:yellow" class="fa-solid fa-star"></i>
-               </span> 
-              </li>
-         </ul>
-         <p style="position:absolute;font-size:20px;font-weight:600;color:#000">{{i+1+" From "+commentaire.length}}</p>
-      </div>
-      
-     
+      <list_review :show_comments="show_comments" :commentaire="commentaire" :i="i"></list_review>
+
       <!--:showpreloader="showpreloader"-->
     </div>
     <!-- Import Js -->
@@ -48,6 +32,7 @@
     <script src="./components/deatils.js"></script>
     <script src="./components/review.js"></script>
     <script src="./components/index.min.js"></script>
+    <script src="./components/list_review.js"></script>
     <script src="./components/valider_successfully.js"></script>
     <script src="https://kit.fontawesome.com/c5bebe1cfa.js" crossorigin="anonymous"></script>
     <script>

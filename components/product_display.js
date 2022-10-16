@@ -124,7 +124,7 @@ app.component('product_dispaly',{
         <button class="button_moins" :class="{disabled_button:nombre_possible_cart==0}"  @click="delete_cart()">Delete <i class="fa-solid fa-minus"></i> </button>
       </div>
       <div>
-      <button style="background-color:blue;width:200px" class="button" :class="{disabled_button:commentaire==''}"  @click="show_comments_click()">Show Comments</button>
+      <button style="background-color:blue;width:200px" class="button" :class="{disabled_button:commentaire==''}"  @click="show_comments_click()" >Show Comments  </button>
      </div>
       </div>
       </div>
@@ -245,6 +245,13 @@ app.component('product_dispaly',{
          }
     },
     computed:{
+      /*type(){
+          if(this.commentaire==''){
+            return '';
+          }else{
+            return 'fa-eye';
+          }
+      },*/
      /* image for select courant */
      image(){
         return this.variants[this.select].image;
