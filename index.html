@@ -17,14 +17,11 @@
       <preloader></preloader>
       <div class="nav-bar"></div>
       <canvas id="my-canvas"></canvas>
-   
       <product_dispaly style="position: relative;" :show_comments="show_comments" @plus="plus" @moins="moins" :i="i" :commentaire="commentaire" @show_comments_function="show_comments_function" @updatedselect="updatedselect" @show_form_function="show_form_function" :size_select="size_select" :size_select_old="size_select_old" :size_select_final="size_select_final" @size_choice="size_choice" @delete_cart="delete_cart" @add_cart="add_cart" :select="select" :color="color" :variants="variants" :sizes="sizes" :details="details"></product_dispaly>
       <review  v-if="show_form==true" :show_form="show_form"  :commentaire="commentaire" @show_form_function="show_form_function" :comment="comment" @add_comment="add_comment"></review>
       <list_review :show_comments="show_comments" :commentaire="commentaire" :i="i"></list_review>
 
-      <!--:showpreloader="showpreloader"-->
     </div>
-    <!-- Import Js -->
     <script src="js/main.js"></script>
     <script src="./components/preloader.js"></script>
     <script src="./components/product_display.js"></script>
