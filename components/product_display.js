@@ -1,5 +1,6 @@
 app.component('product_dispaly',{
     template:
+    /*html*/
     ` <div class="product-display">
         <div :style="{borderColor:color}" class="circle-1"></div>
         <div :style="{borderColor:color}" class="circle-2"></div>
@@ -98,7 +99,7 @@ app.component('product_dispaly',{
           in stock
       </p>-->
       <p v-if='onsale==true' style="color:red">
-          {{name +' product est en vente'}}
+          {{name +' est en vente'}}
       </p>
       <p v-else style="color:green">
            in stock
