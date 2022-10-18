@@ -88,17 +88,24 @@ app.component('product_dispaly',{
        <h1>{{name}}</h1>
      <!--<p v-if="inventery>10">En stock</p>
       <p v-else-if="inventery>15">presue</p>
-      <p v-else="inventery>20">En repture de stock</p>--> 
-      <p v-if="!test_stock" style="color:red">
+      <p v-else="inventery>20">En repture de stock</p>
+      --> 
+      <!--<p v-if="!test_stock" style="color:red">
           Out Of Stock
-         <!--<img class="image_personel" :src="img_out_of_stock" alt="">-->
+           <img class="image_personel" :src="img_out_of_stock" alt="">
       </p>
       <p v-else style="color:green">
           in stock
+      </p>-->
+      <p v-if='onsale==true' style="color:red">
+          {{name +' product est en vente'}}
+      </p>
+      <p v-else style="color:green">
+           in stock
       </p>
       <p class="description">{{description}}</p>
-      <h3>prix : </h3>
-           <p class="prix">{{ prix}} dt</p> 
+      <h3>Prix : </h3>
+           <p class="prix" style="color:orange;font-size:18px;margin-left:35px">{{ prix}} dt</p> 
       <h3>Detail</h3>
       <details-part :details="details"></details-part>
       <h3>Color</h3>
@@ -264,7 +271,7 @@ app.component('product_dispaly',{
     prix(){
         return this.variants[this.select].prix;
     },
-   
+    
      /* id for chaussete */
     id(){
         return this.variants[this.select].id;
@@ -305,6 +312,9 @@ app.component('product_dispaly',{
             count+=variant.cart*variant.prix;
         })
         return count;
+    },
+    onsale(){
+       return this.variants[this.select].quantity==0 ? true : false;
     }
     }
 })
